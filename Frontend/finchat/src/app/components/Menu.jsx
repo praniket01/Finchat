@@ -64,14 +64,7 @@ const AgentMenu = () => {
                 ))}
             </div>
       <div className="response">
-        {/* <h2>Response:</h2>
-        {loading ? (
-          <div className="loading-indicator">Fetching data...</div>
-        ) : response ? (
-          <pre>{response?.content || response}</pre>
-        ) : (
-          <div className="placeholder">No response yet. Submit a query!</div>
-        )} */}
+        
         <form
                 onSubmit={handleQuery}
                 className="flex gap-3 items-center"

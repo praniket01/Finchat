@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # Initialize your Groq agent
-groq_model = Groq(id="llama3-groq-70b-8192-tool-use-preview", api_key=os.getenv("GROQ_API_KEY"))
+groq_model = Groq(id="llama3-70b-8192", api_key=os.getenv("GROQ_API_KEY"))
 
 # Initialize Groq models for the agents
 web_agent = Agent(
