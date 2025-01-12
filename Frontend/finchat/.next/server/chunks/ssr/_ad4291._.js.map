@@ -8,7 +8,7 @@
     {"offset": {"line": 29, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
     {"offset": {"line": 35, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
     {"offset": {"line": 39, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 45, "column": 0}, "map": {"version":3,"sources":["file://D%3A/Projects/Python_API_Request/Frontend/finchat/src/app/page.tsx"],"sourcesContent":["import Image from \"next/image\";\nimport Menu from \"@/app/components/Menu\"\nimport LandingPage from \"./Pages/LandingPage/LandingPage\";\n\nexport default function Home() {\n  return (\n    <>\n    <LandingPage />\n    </>\n  );\n}\n"],"names":[],"mappings":";;;;AAEA;;;AAEe,SAAS;IACtB,qBACE;kBACA,cAAA,8OAAC,kJAAA,CAAA,UAAW;;;;;;AAGhB"}},
+    {"offset": {"line": 45, "column": 0}, "map": {"version":3,"sources":["file://D%3A/Projects/Python_API_Request/Frontend/finchat/src/app/page.tsx"],"sourcesContent":["import Image from \"next/image\";\r\nimport LandingPage from \"./Pages/LandingPage/LandingPage\";\r\n\r\nexport default function Home() {\r\n  return (\r\n    <>\r\n    <LandingPage />\r\n    </>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;AACA;;;AAEe,SAAS;IACtB,qBACE;kBACA,cAAA,8OAAC,kJAAA,CAAA,UAAW;;;;;;AAGhB"}},
     {"offset": {"line": 61, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
     {"offset": {"line": 72, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":""}},
     {"offset": {"line": 72, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},

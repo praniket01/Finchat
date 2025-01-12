@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { queryAgent } from '../services/api/api';
+import { queryAgent } from '../src/app/services/api/api';
 
 const AgentQuery = () => {
     const [query, setQuery] = useState("");

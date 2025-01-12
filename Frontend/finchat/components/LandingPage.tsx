@@ -2,12 +2,10 @@
 import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-const LandingPage: React.FC = () => {
-  const handleSignin = () => {
-    signIn();
-  };
-
+const LandingPage= () => {
+const router = useRouter();
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md text-center">
@@ -16,13 +14,11 @@ const LandingPage: React.FC = () => {
           Your Financial assistant to help you manage and grow your finances effortlessly.
         </p>
         <div className="flex flex-col space-y-4">
-          <Link href={"/Pages/Signup"}>
-            <button className="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition">
-              Sign Up
-            </button>
+          <Link href={"./components/Signup"}>
+                 Sign Up
           </Link>
           <button
-            onClick={handleSignin}
+            onClick={()=> {router.push("/api/auth/signin")}}
             className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
           >
             Sign In
