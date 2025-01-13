@@ -3,34 +3,41 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import axios from "axios";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const Signup = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
 
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  // });
+ const [name,setName] = useState("");
+ const [password,setPassword] = useState("");
+ const [email,setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/auth/signup", formData);
+      const response = await axios.post("/api/signup", {
+        name,
+        email,
+        password
+      });
       if (response.status === 201) {
         setSuccess(true);
-        router.push("/menu"); // Redirect to Menu page after successful signup
+        
+        router.push("/"); // Redirect to Menu page after successful signup
+        
       }
     } catch (err: any) {
+      console.log(err);
       setError(err.response?.data?.message || "Something went wrong!");
     }
   };
@@ -46,8 +53,8 @@ const Signup = () => {
             type="text"
             name="name"
             placeholder="Name"
-            value={formData.name}
-            onChange={handleChange}
+            value={name}
+            onChange={(e)=>{setName(e.target.value)}}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -55,8 +62,8 @@ const Signup = () => {
             type="email"
             name="email"
             placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e)=>{setEmail(e.target.value)}}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -64,8 +71,8 @@ const Signup = () => {
             type="password"
             name="password"
             placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e)=>{setPassword(e.target.value)}}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
