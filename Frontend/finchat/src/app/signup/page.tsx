@@ -4,17 +4,13 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import axios from "axios";
 import { PrismaClient } from "@prisma/client";
+import { toast } from "react-toastify";
 
 const prisma = new PrismaClient();
 
 const Signup = () => {
   const router = useRouter();
 
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  // });
  const [name,setName] = useState("");
  const [password,setPassword] = useState("");
  const [email,setEmail] = useState("");
@@ -32,7 +28,7 @@ const Signup = () => {
       });
       if (response.status === 201) {
         setSuccess(true);
-        
+        toast("User Created Successfull Please Sign in")
         router.push("/"); // Redirect to Menu page after successful signup
         
       }

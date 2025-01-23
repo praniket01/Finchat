@@ -2,8 +2,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+interface Message {
+  role: "user" | "assistant"; // Define possible roles
+  content: string;
+}
+
 const AgentMenu = () => {
-  const [messages,setMessages] = useState([]);
+  const [messages,setMessages] = useState<Message[]>([]);
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -11,7 +16,7 @@ const AgentMenu = () => {
   const handleQuery = async () => {
     setLoading(true);
     const userMessage = { role: "user", content: query };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev:any) => [...prev, userMessage]);
 
     try {
       const { data } = await axios.get(`http://127.0.0.1:8000/finance-query`, {
@@ -20,13 +25,13 @@ const AgentMenu = () => {
       const botMessage = {
         role: "assistant",
         content: data.response.messages
-          .filter((x) => x.role === "assistant")
-          .map((x) => x.content)
+          .filter((x:any) => x.role === "assistant")
+          .map((x:any) => x.content)
           .join(" "),
       };
 
       // Add the AI response to the state
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages((prev:any) => [...prev, botMessage]);
     } catch (error) {
       console.error("Error querying agent:", error);
       setResponse("Something went wrong. Please try again.");
