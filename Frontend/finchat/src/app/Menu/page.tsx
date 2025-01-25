@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 
 
@@ -25,13 +26,16 @@ const AgentMenu = () => {
 
       } catch (error) {
         console.log("No session found");
-        redirect("/signin");
+        redirect("/api/auth/signin");
       }
     }
     checksession();
 
   }, [])
-  const handleQuery = async () => {
+  const handleQuery = async (e : React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
     const userMessage = { role: "user", content: query };
     setMessages((prev: any) => [...prev, userMessage]);
 
@@ -62,6 +66,10 @@ const AgentMenu = () => {
   return (
     <div className="max-w-lg mx-auto p-6">
       <h1 className="text-center text-2xl font-bold mb-4">Finchat</h1>
+      <button onClick={async()=>{await signOut({
+      callbackUrl: "/", 
+    });}}
+      className="fixed top-4 right-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition"> Sign Out </button>
       <div className="menu">
 
       </div>
@@ -92,7 +100,7 @@ const AgentMenu = () => {
           <button
             type="submit"
             className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-            onClick={handleQuery} disabled={loading}
+            disabled={loading}
           >
             {loading ? "Sending..." : "Send"}
           </button>

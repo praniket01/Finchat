@@ -14,7 +14,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
+    allow_origins=["http://localhost:3000"],  # Allow all origins
     allow_credentials=True,
     allow_methods=["*"],  # Allow all methods
     allow_headers=["*"],  # Allow all headers
@@ -75,5 +75,7 @@ async def finance_query(query: str):
     """
     Endpoint to query the finance agent directly.
     """
+    # headers = dict(query.headers)
+    # print("headers received : ", headers)
     response = finance_agent.run(query)
     return {"response": response}
