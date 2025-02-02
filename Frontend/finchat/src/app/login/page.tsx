@@ -5,16 +5,12 @@ import { useState } from "react"
 import { redirect, useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 
-interface LoginProps{
-  csrfToken?: string;
-}
-
-const Login = (props : LoginProps) => {
-
+// Remove LoginProps interface if not needed
+const Login = () => {
   const [error, showError] = useState("");
   const router = useRouter();
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
 
@@ -24,15 +20,13 @@ const Login = (props : LoginProps) => {
       redirect: false,
     });
 
-  
     if (res && !res.error) {
       redirect("/Menu");
+    } else {
+      console.log("error", res);
+      showError("Your Password or Email is wrong");
     }
-    else{
-      console.log("error",res);
-      showError("Your Password or Email is wrong")
-    }
-  }
+  };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300">
@@ -46,8 +40,6 @@ const Login = (props : LoginProps) => {
             type="email"
             name="email"
             placeholder="Email"
-            // value={email}
-            // onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -55,8 +47,6 @@ const Login = (props : LoginProps) => {
             type="password"
             name="password"
             placeholder="Password"
-            // value={password}
-            // onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             required
           />
@@ -78,7 +68,7 @@ const Login = (props : LoginProps) => {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 export default Login;

@@ -66,9 +66,7 @@ const AgentMenu = () => {
   return (
     <div className="max-w-lg mx-auto p-6">
       <h1 className="text-center text-2xl font-bold mb-4">Finchat</h1>
-      <button onClick={async()=>{await signOut({
-      callbackUrl: "/", 
-    });}}
+      <button onClick={async()=>{await signOut({    });}}
       className="fixed top-4 right-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 transition"> Sign Out </button>
       <div className="menu">
 
